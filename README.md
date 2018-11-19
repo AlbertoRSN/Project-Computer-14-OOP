@@ -4,4 +4,4 @@
 
 * Class1.cs - Library with Interface
 * Program.cs - Main program
-* ClassDiagram Computer13.pdf - Class Diagram PDF
+* ClassDiagram Computer13.pdf - UML Class Diagram PDF
