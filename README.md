@@ -7,3 +7,4 @@
 * Program.cs - Main program
 * ClassDiagram Computer13.pdf - UML Class Diagram PDF
 * UseCaseDiagram.pdf - Use Case Diagram 
+* Component Diagram.pdf - Component Diagram
