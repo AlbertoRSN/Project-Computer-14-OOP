@@ -9,5 +9,6 @@
 * UseCaseDiagram.pdf - Use Case Diagram 
 * Component Diagram.pdf - Component Diagram
 * Activity Diagram Ping.pdf - Activity Diagram for action -> PingToComputer
-**Diagramas - Directory which contains every diagrams
-**Diagrama 1
+* Diagramas - Directory which contains every diagrams
+
+hola
