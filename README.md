@@ -8,3 +8,4 @@
 * ClassDiagram Computer13.pdf - UML Class Diagram PDF
 * UseCaseDiagram.pdf - Use Case Diagram 
 * Component Diagram.pdf - Component Diagram
+* Activity Diagram Ping.pdf - Activity Diagram for action -> PingToComputer
