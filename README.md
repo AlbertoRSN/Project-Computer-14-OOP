@@ -6,7 +6,7 @@
 * compsAbs.cs - Program with Abstract Class
 * Program.cs - Main program
 *  Activity Diagram Ping.pdf - Activity Diagram for action -> PingToComputer
-* Diagramas - Directory which contains every diagrams
+* Diagrams - Directory which contains every diagrams
   *  ClassDiagram Computer13.pdf - UML Class Diagram PDF
   *  UseCaseDiagram.pdf - Use Case Diagram 
   *  Component Diagram.pdf - Component Diagram
