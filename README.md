@@ -5,7 +5,6 @@
 * Class1.cs - Library with Interface
 * compsAbs.cs - Program with Abstract Class
 * Program.cs - Main program
-*  Activity Diagram Ping.pdf - Activity Diagram for action -> PingToComputer
 * Diagrams - Directory which contains every diagrams
   *  ClassDiagram Computer13.pdf - UML Class Diagram PDF
   *  UseCaseDiagram.pdf - Use Case Diagram 
