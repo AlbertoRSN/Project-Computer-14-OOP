@@ -30,7 +30,7 @@ namespace OOP_in_Csharp
             }
             textBox3.Text = net[0].Name + " " + net[0].Ipadress;
             net[0].StartComputer();
-            
+
         }
 
         //------- BUTTON OFF COMPUTER 1 -------
@@ -44,6 +44,7 @@ namespace OOP_in_Csharp
 
             net[0].ShutDown();
             textBox3.Clear();
+            
 
         }
 
@@ -157,13 +158,11 @@ namespace OOP_in_Csharp
         //BUTTON TO LIST THE COMPUTERS
         private void button13_Click(object sender, EventArgs e)
         {
-
+            listBox.Items.Clear();
             //listBox.DrawMode = DrawMode.OwnerDrawFixed;
 
             foreach (Computer comp in net)
             {
-                if (i == 0)//&& comp.SwitchedOn)
-                {
                     Type type = comp.GetType();
                     string stringType = type.ToString();
 
@@ -175,16 +174,93 @@ namespace OOP_in_Csharp
                         string s = comp.Name + "\t" + comp.Ipadress + "\t    " + serv.Destination;
                         listBox.Items.Add(s);
                         
-                        //listBox.DrawItem += new DrawItemEventHandler(listBox_DrawItem);
+                        listBox.DrawItem += new DrawItemEventHandler(listBox1_DrawItem);
                     }
                     else //IF TYPE IS COMPUTER PRINT NAME AND IP
                     {
                         listBox.Items.Add(comp.Name + "    " + comp.Ipadress);//comp.GetIpAddress().ToString());
                     }
+            }
+            
+            i++;
+        }
+
+        //------- BUTTON TO SIMULATE PING -------
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            //pingConsole consola donde voy a mostrar el mensaje
+            //textBox1 texttbox ping from
+            //textBox2 textBox ping to
+            string pingFrom = textBox1.Text;
+            string pingTo = textBox2.Text;
+
+            //Check if computer pingFrom is on the ListBox
+            bool found = false;
+
+            foreach(Computer comp in net)
+            {
+                if(pingTo == comp.Ipadress)// && (comp.SwitchedOn == true))
+                {
+                    found = true;
+                    break;
+                }
+
+                if (found)
+                {
+                    pingConsole.Text = "64 bytes from" + pingFrom + "  icmp_seq=1 ttl=64 time=0.1 ms";
                 }
             }
-            listBox.Refresh();
-            i++;
+
+
+
+        }
+
+        public static void PingToComputer(List<Computer> net, Computer pingFrom, string pingTo)
+        {
+            Random rnd = new Random();
+            float answer;
+            Computer myComp = pingFrom;
+            bool found = false;
+            
+            foreach (Computer comp in net)
+            {
+                if ((pingTo == comp.Ipadress) && (comp.SwitchedOn == true))
+                {
+                    found = true;
+                    break;
+                }
+            } // the end of the loop
+            if (found)
+            {
+                for (int i = 5; i < 15; i++)
+                {
+                    answer = (float)(rnd.Next(1, 100)) / 100;
+                    Console.WriteLine("64 bytes from {0} icmp_seq={1} ttl=64 time={2} ms", myComp.Ipadress, i.ToString(), answer.ToString());
+                }
+            }
+            else
+            {
+                //Console.WriteLine("Adress {0} not found !!! ", pingTo);
+                Console.WriteLine("from {0}: icmp_seq13 Destination Host Unreachable", pingTo);
+            }
+        }
+
+
+
+        //------- METHOD TO PAINT THE SERVERS -------
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            e.DrawBackground();
+            Brush brush;
+
+            if (e.Index == lb.Items.Count - 1)//El último elemento
+                brush = Brushes.Red; 
+            else if(e.Index == lb.Items.Count - 2)//El penúltimo elemento
+                brush = Brushes.Red;
+            else brush = Brushes.Black;
+
+            e.Graphics.DrawString(lb.Items[e.Index].ToString(), e.Font, brush, e.Bounds);
         }
 
 
@@ -206,16 +282,6 @@ namespace OOP_in_Csharp
 
         }
 
-        
-
-       
-
-        
-
-        
-
-        
-
 
         private void Simulation_Load(object sender, EventArgs e)
         {
@@ -227,7 +293,8 @@ namespace OOP_in_Csharp
             button6.BackColor = Color.Red;
             button12.BackColor = Color.Red;
             */
-            //Creating new "server"
+
+            //Creating new "servers"
             Server s1 = new Server("s1", "Dell", "Linux", false, "WEB Server", "10.0.0.1");
             Server s2 = new Server("s2", "IBM", "Linux", false, "DHCP", "10.0.0.2");
 
@@ -288,21 +355,12 @@ namespace OOP_in_Csharp
         }
 
 
-        //TO PAINT LIST OF COMPUTERS
-        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // Draw the background of the ListBox control for each item.
-            //e.DrawBackground();
-            Brush myBrush = Brushes.Red; //or whatever...
-                                         // Draw the current item text based on the current 
-                                         // Font and the custom brush settings.
-                                         //
-            e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(),
-                e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
-            // If the ListBox has focus, draw a focus rectangle 
-            // around the selected item.
-            //e.DrawFocusRectangle();
-        }
+
+      
+
+
+
+
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
@@ -310,6 +368,18 @@ namespace OOP_in_Csharp
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void pingConsole_TextChanged(object sender, EventArgs e)
         {
 
         }
